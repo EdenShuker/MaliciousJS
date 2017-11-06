@@ -1,14 +1,14 @@
 var express = require('express');
+var app = express();
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-// var index = require('./routes/index');
+var index = require('./routes/index');
 // var users = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,25 +22,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', index);
+app.use('/', index);
 // app.use('/users', users);
 
-
-// the main page
-app.get('/', function(req,res){
-    res.render('index', {title: 'Eden' });
+io.on('connection', function (socket) {
+    console.log('A user connected');
 });
 
-// the shout JSON endpoint
-app.get('/shout', function (req,res) {
-    var input = req.query.text;
-    //res.send('input: "'+input+'"');
-    res.json({result:input});
+http.listen(3000, function () {
+    console.log('listening on *:3000');
 });
 
-// app.get('/', (req,res)=>{
-//     res.render('index');
-// });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -59,7 +51,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-
 module.exports = app;
-

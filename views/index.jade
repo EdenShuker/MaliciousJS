@@ -1,11 +1,22 @@
 extends layout
 block head
-  script(src="https://code.jquery.com/jquery-3.2.1.min.js",
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",
-  crossorigin="anonymous")
+  script(src="../public/stylesheets/style.css")
+  //script(src="https://code.jquery.com/jquery-3.2.1.min.js",
+  //integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",
+  //crossorigin="anonymous")
 block content
   h1= title
-  p Welcome to #{title}
-  input#input(type="text", placeholder= "Enter text")
-  ul#results
-  script(src="javascripts/shout.js")
+  script(src="/socket.io/socket.io.js")
+  script.
+    var socket = io();
+  body
+    div
+      ul#msgs
+    div#inputDivOut
+      div#inputDiv
+        form(action="")
+          input#myMsg(class="formItem", type="text", placeholder="Enter text", onautocomplete="off")
+          button#sendButton(class="formItem") Send
+  //p Welcome to #{title}
+  //input#input(type="text", placeholder= "Enter text")
+  //script(src="javascripts/shout.js")
