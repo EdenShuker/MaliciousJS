@@ -1,27 +1,32 @@
 extends layout
 block head
   script(src="../public/stylesheets/style.css")
-  script(src="https://code.jquery.com/jquery-3.2.1.min.js",
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",
-  crossorigin="anonymous")
+  script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
 block content
   h1= title
-  script(src="/socket.io/socket.io.js")
-  script.
-    var socket = io();
-    $('form').submit(function () {
-        socket.emit('chat message', $('#myMsg').val());
-        $('#myMsg').val('');
-        return false;
-    });
   body
     div
       ul#msgs
     div#inputDivOut
-      div#inputDiv
-        form(action="")
-          input#myMsg(class="formItem", type="text", placeholder="Enter text", onautocomplete="off")
-          button#sendButton(class="formItem") Send
-  //p Welcome to #{title}
-  //input#input(type="text", placeholder= "Enter text")
-  //script(src="javascripts/shout.js")
+      input#msg(type="text", placeholder="Enter text", onautocomplete="off")
+      button#btn(type=button, name='send', onclick="submitMsg()")
+  script(src="/socket.io/socket.io.js")
+
+  script.
+    var socket = io.connect();
+      $(document).ready(function () {
+          socket.on('PostMessage', function (data) {
+              console.log("msg is: " + data);
+              var ul = document.getElementById('msgs');
+              var li= document.createElement("li");
+              li.appendChild(document.createTextNode(data));
+              ul.appendChild(li);
+          });
+      });
+    function submitMsg() {
+        var msg=document.getElementById('msg').value;
+        console.log("submit" + msg);
+        socket.emit('sendMsg',msg);
+    }
+
+
