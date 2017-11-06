@@ -1,27 +1,10 @@
-/*body {*/
-  /*padding: 50px;*/
-  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
-/*}*/
 
-/*a {*/
-  /*color: #00B7FF;*/
-/*}*/
+#inputDivOut {position: fixed; bottom: 0; width: 77%; }
+#msg {margin-right: .5%; width: 90%;}
+#btn {width: 6%; text-align: center;}
+.formItem {padding: 10px 10px; line-height: 5px;}
+#msgs li:nth-child(odd) { background: #eee; }
 
-/* will fix the div to the bottom */
-#inputDivOut {position: fixed; bottom: 0; width: 100%; }
-/* set the inner div to be centered */
-#inputDiv {margin: auto;}
-
-
-#myMsg {margin-right: .5%; width: 90%;}
-#sendButton {width: 6%; text-align: center;}
-/* set the height of the input items */
-.formItem {padding: 10px 10px; line-height: 15px;}
-
-/*body { font: 13px Helvetica, Arial; }*/
-/*form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 80%; }*/
-/*form input { border: 0; padding: 10px; width: 85%; margin-right: .5%; alignment: center }*/
-/*form button {  background: rgb(130, 224, 255); border: none; padding: 10px; }*/
-/*#messages { list-style-type: none; margin: 0; padding: 0; }*/
-/*#messages li { padding: 5px 10px; }*/
-/*#messages li:nth-child(odd) { background: #eee; }*/
+#content {width: 70%}
+li {font-size: large; padding: 10px}
+div {margin: 20px 20px; width: 70%}

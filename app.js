@@ -32,8 +32,7 @@ io.sockets.on('connection', function (socket) {
     console.log('A user connected');
     socket.on('disconnect', function(){
         console.log('user disconnected');
-    });
-    socket.on('sendMsg', function (data) {
+    }).on('sendMsg', function (data) {
         io.sockets.emit('PostMessage', data);
     });
 });
