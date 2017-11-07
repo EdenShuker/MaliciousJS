@@ -14,7 +14,12 @@
             data.forEach(function (msg) {
                 console.log("msg is: " + msg);
                 var li = document.createElement("li");
+
+                // line below will take the '<script>...</script>' as part of the string
                 // li.appendChild(document.createTextNode(msg));
+
+                // line below will make '<script>...</script>' as script tag but yet doesn't run
+                // maybe because of the browser that prevents it
                 li.innerHTML = msg;
                 ul.appendChild(li);
             })
