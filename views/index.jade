@@ -1,8 +1,8 @@
 extends layout
 block head
-  script(src="../public/stylesheets/style.css")
+  script(src="stylesheets/style.css")
   script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
-
+  script(src="/socket.io/socket.io.js")
 block content
   div
     h1= title
@@ -15,33 +15,6 @@ block content
       input#msg(class="inputDiv", type="text", placeholder="Enter text", onautocomplete="off")
       button#btn(class="inputDiv", type=button, name='send', onclick="submitMsg()") Send
 
-  script(src="/socket.io/socket.io.js")
-  script.
-    // set initial focus on the text-input
-    $("#msg").focus();
-
-  script.
-    var socket = io.connect();
-    // post msg of users on the screen
-    $(document).ready(function () {
-        socket.on('PostMessage', function (data) {
-            console.log("msg is: " + data);
-            var ul = document.getElementById('msgs');
-            var li= document.createElement("li");
-            li.appendChild(document.createTextNode(data));
-            ul.appendChild(li);
-        });
-    });
-    // send your msg by clicking enter
-    $(document).on('keydown', function (key) {
-        var code = (key.keyCode ? key.keyCode : key.which);
-        if (code == 13) { //Enter keycode
-            submitMsg();
-        }
-    });
-    function submitMsg() {
-        var msg=document.getElementById('msg').value;
-        socket.emit('sendMsg',msg);
-    }
+  script(src="/javascript/index.js")
 
 
