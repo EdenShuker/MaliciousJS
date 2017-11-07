@@ -8,13 +8,18 @@
     // post msg of users on the screen
     $(document).ready(function () {
         socket.on('PostMessage', function (data) {
-            console.log("msg is: " + data);
             var ul = document.getElementById('msgs');
-            var li = document.createElement("li");
-            li.appendChild(document.createTextNode(data));
-            ul.appendChild(li);
+
+            // add each msg from the list to the screen
+            data.forEach(function (msg) {
+                console.log("msg is: " + msg);
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(msg));
+                ul.appendChild(li);
+            })
         });
     });
+
     // send your msg by clicking enter
     $(document).on('keydown', function (key) {
         var code = (key.keyCode ? key.keyCode : key.which);
@@ -22,6 +27,7 @@
             submitMsg();
         }
     });
+
     function submitMsg() {
         // send msg
         var msg = document.getElementById('msg');

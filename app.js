@@ -28,13 +28,24 @@ http.listen(3000, function () {
     console.log('listening on *:3000');
 });
 
+var list = [];
+
 io.sockets.on('connection', function (socket) {
     console.log('A user connected');
+
     socket.on('disconnect', function(){
         console.log('user disconnected');
     }).on('sendMsg', function (data) {
-        io.sockets.emit('PostMessage', data);
+        // add the msg to db
+        list.push(data);
+        // broadcast msg
+        io.sockets.emit('PostMessage', [data]);
     });
+
+    // send previous msgs to current new user only
+    if (list.length){
+        socket.emit('PostMessage', list);
+    }
 });
 
 // catch 404 and forward to error handler
