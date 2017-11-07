@@ -14,7 +14,8 @@
             data.forEach(function (msg) {
                 console.log("msg is: " + msg);
                 var li = document.createElement("li");
-                li.appendChild(document.createTextNode(msg));
+                // li.appendChild(document.createTextNode(msg));
+                li.innerHTML = msg;
                 ul.appendChild(li);
             })
         });

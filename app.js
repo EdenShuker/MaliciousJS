@@ -28,7 +28,7 @@ http.listen(3000, function () {
     console.log('listening on *:3000');
 });
 
-var list = [];
+var myMsgDb = [];
 
 io.sockets.on('connection', function (socket) {
     console.log('A user connected');
@@ -37,14 +37,14 @@ io.sockets.on('connection', function (socket) {
         console.log('user disconnected');
     }).on('sendMsg', function (data) {
         // add the msg to db
-        list.push(data);
+        myMsgDb.push(data);
         // broadcast msg
         io.sockets.emit('PostMessage', [data]);
     });
 
     // send previous msgs to current new user only
-    if (list.length){
-        socket.emit('PostMessage', list);
+    if (myMsgDb.length){
+        socket.emit('PostMessage', myMsgDb);
     }
 });
 
