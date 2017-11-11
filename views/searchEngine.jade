@@ -1,0 +1,18 @@
+extends layout
+block head
+    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
+block content
+    div
+        h1= title
+    //
+    body
+        div
+            form(name="search", action="/submit", method="get")
+                div.input
+                    //span.label Title
+                    input(type="text", name="searchBox")
+                div.actions
+                    input(type="submit", value="search")
+
+    script(src="/javascripts/searchEngine.js")
+
