@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/searchEngine', searchEngine);
+app.use('/search', searchEngine);
 
 http.listen(3000, function () {
     console.log('listening on *:3000');
@@ -42,6 +42,9 @@ io.sockets.on('connection', function (socket) {
         myMsgDb.push(data);
         // broadcast msg
         io.sockets.emit('PostMessage', [data]);
+    }).on('search', function (data) {
+        console.log('searched for: ' + data);
+        socket.emit('searchResponse', data);
     });
 
     // send previous msgs to current new user only
@@ -52,20 +55,20 @@ io.sockets.on('connection', function (socket) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
