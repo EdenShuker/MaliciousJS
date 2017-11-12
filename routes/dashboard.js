@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('userDashboard', { title: 'Custom Dashboard' });
+    res.render('userDashboard', { title: 'DOM Based Attack' });
 });
 
 module.exports = router;

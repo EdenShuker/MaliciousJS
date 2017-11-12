@@ -1,15 +1,25 @@
 extends layout
-block head
-    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
 
 block content
-    div
-        h1= title
+  div
+    h1= title
 
-    body
-        ul
-            il#myIl
-        script.
-            var pose = document.URL.indexOf("context=")+8;
-            document.getElementById('myIl').innerHTML = document.URL.substring(pose, document.URL.length);
-//            document.write(document.URL.substring(pose, document.URL.length));
+  body
+    div
+      p(style='white-space:pre;')
+        | enter query-parameters in the url
+        | add to the current url the next:
+        |     '?context=something'
+        | where something is the query value
+        | .
+        | Chrome prevents it, but will work with Explorer
+        | .
+        | injecting examples (complete the tags):
+        | 1. script>alert(1)
+        | 2. b onmouseover='alert(1)'
+
+    ul
+      il#myIl
+    script.
+        var pose = document.URL.indexOf("context=") + 8;
+        document.getElementById('myIl').innerHTML = document.URL.substring(pose, document.URL.length);

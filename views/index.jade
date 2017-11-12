@@ -1,7 +1,5 @@
 extends layout
 block head
-  script(src="stylesheets/style.css")
-  script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
   script(src="/socket.io/socket.io.js")
 block content
   div
@@ -9,15 +7,16 @@ block content
 
   body
 
-    p(style='white-space:pre;')
-      | Open 2 tabs on 'localhost:3000'
-      | send messages to each other by entering a string and pressing enter
-      |
-      | injecting '<script>...</script>' isn't blocked, but script doesn't run, although recognized as script-tag
-      |
-      | injecting examples (complete the tags):
-      | 1. button onclick='alert(1)'
-      | 2. b onmouseover='alert(1)'
+    div
+      p(style='white-space:pre;')
+        | Open 2 tabs on 'localhost:3000'
+        | send messages to each other by entering a string and pressing enter
+        | .
+        | injecting '<script>...</script>' isn't blocked, but script doesn't run, although recognized as script-tag
+        | .
+        | injecting examples (complete the tags):
+        | 1. button onclick='alert(1)'
+        | 2. b onmouseover='alert(1)'
 
     #content
       ul#msgs

@@ -1,6 +1,5 @@
 extends layout
 block head
-    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
     script(src="/socket.io/socket.io.js")
 block content
     div
@@ -9,16 +8,16 @@ block content
     body
         div
             p(style='white-space:pre;')
-                | Enter string and press enter
-                | Redirection to: localhost:3000/search?str=<something>
-                | where <something> is the string you entered
-                |
-                | Chrome prevents reflected xss
-                | Will work with explorer
-                |
-                | examples (complete the tags below):
-                | 1. script>alert(1)
-                | 2. button onmouseover='alert(1)'
+                 | Enter string and press enter
+                 | Redirection to: localhost:3000/search?str=something
+                 | where something is the string you entered
+                 | .
+                 | Chrome prevents reflected xss
+                 | Will work with explorer
+                 | .
+                 | examples (complete the tags below):
+                 | 1. script>alert(1)
+                 | 2. button onmouseover='alert(1)'
         div
             form(name="search", action="", method="get")
                 div.input
