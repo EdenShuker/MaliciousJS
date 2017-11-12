@@ -16,8 +16,5 @@ router.get('/', function(req, res, next) {
     res.send(req.query.str);
 });
 
-// router.get('/submit', function (req, res, next) {
-//
-// });
 
 module.exports = router;

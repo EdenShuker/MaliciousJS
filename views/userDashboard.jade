@@ -1,0 +1,12 @@
+extends layout
+block head
+    script(src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js")
+
+block content
+    div
+        h1= title
+
+    body
+        script.
+            var pose = document.URL.indexOf("context=")+8;
+            document.write(document.URL.substring(pose, document.URL.length));

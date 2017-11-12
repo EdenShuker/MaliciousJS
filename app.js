@@ -10,6 +10,7 @@ var io = require('socket.io')(http);
 var index = require('./routes/index');
 var users = require('./routes/users');
 var searchEngine = require('./routes/searchEngine');
+var dashboard = require('./routes/dashboard');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/search', searchEngine);
+app.use('/userdashboard', dashboard);
 
 http.listen(3000, function () {
     console.log('listening on *:3000');
