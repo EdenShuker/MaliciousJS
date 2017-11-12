@@ -8,14 +8,21 @@ block content
 
     body
         div
-            form(name="search", action="/submit", method="get")
+            p(style='white-space:pre;')
+                | Enter string and press enter
+                | Redirection to: localhost:3000/search?str=<something>
+                | where <something> is the string you entered
+                |
+                | Chrome prevents reflected xss
+                | Will work with explorer
+                |
+                | examples (complete the tags below):
+                | 1. script>alert(1)
+                | 2. button onmouseover='alert(1)'
+        div
+            form(name="search", action="", method="get")
                 div.input
                     //span.label Title
-                    input#searchStr(type="text", name="searchBox")
+                    input#searchStr(type="text", name="str")
                 div.actions
                     input(type="submit", value="search")
-
-            h3= "You searched for:"
-            h4#lbl
-    script(src="/javascripts/searchEngine.js")
-

@@ -20,6 +20,7 @@
 
                 // line below will make '<script>...</script>' as script tag but yet doesn't run
                 // maybe because of the browser that prevents it
+
                 li.innerHTML = msg;
                 ul.appendChild(li);
             })

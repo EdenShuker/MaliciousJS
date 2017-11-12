@@ -3,7 +3,7 @@
 #msg {margin-right: .5%; width: 90%;}
 #btn {width: 6%; text-align: center;}
 .formItem {padding: 10px 10px; line-height: 5px;}
-#msgs li:nth-child(odd) { background: #eee; }
+#msgs li:nth-child(odd) { background: #00cc00; }
 
 #content {width: 70%}
 li {font-size: large; padding: 10px}

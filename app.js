@@ -8,8 +8,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-var searchEngine = require('./routes/searchEngine');
+var search = require('./routes/searchEngine')
 var dashboard = require('./routes/dashboard');
 
 // view engine setup
@@ -24,14 +23,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
-app.use('/search', searchEngine);
+app.use('/search', search);
 app.use('/userdashboard', dashboard);
 
 http.listen(3000, function () {
     console.log('listening on *:3000');
 });
 
+// DataBase to store messages of users.
 var myMsgDb = [];
 
 io.sockets.on('connection', function (socket) {
@@ -39,11 +38,13 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('disconnect', function(){
         console.log('user disconnected');
+
     }).on('sendMsg', function (data) {
         // add the msg to db
         myMsgDb.push(data);
         // broadcast msg
         io.sockets.emit('PostMessage', [data]);
+
     }).on('search', function (data) {
         console.log('searched for: ' + data);
         socket.emit('searchResponse', data);

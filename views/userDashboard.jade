@@ -7,6 +7,9 @@ block content
         h1= title
 
     body
+        ul
+            il#myIl
         script.
             var pose = document.URL.indexOf("context=")+8;
-            document.write(document.URL.substring(pose, document.URL.length));
+            document.getElementById('myIl').innerHTML = document.URL.substring(pose, document.URL.length);
+//            document.write(document.URL.substring(pose, document.URL.length));
